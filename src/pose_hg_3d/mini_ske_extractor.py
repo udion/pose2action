@@ -10,7 +10,7 @@ from functools import partial
 import pickle
 import os
 
-#opt.demo to point to the dir containing train_frames and val_frames dir
+#opt.demo to point to the dir containing mini_train_frames and val_frames dir
 
 def main():
 	pickle.load = partial(pickle.load, encoding="latin1")
@@ -41,7 +41,7 @@ def main():
 			frames_seq[idx, :, :] = point_3d
 		my_tr_dict[a_dir] = frames_seq
 		print('{} done!'.format(a_dir))
-	with open(opt.demo+'/train_data.pkl', 'wb') as handle:
+	with open(opt.demo+'/mini_train_data.pkl', 'wb') as handle:
 		pickle.dump(my_tr_dict, handle, protocol=pickle.HIGHEST_PROTOCOL)
 
 	my_vl_dict = {}
@@ -62,7 +62,7 @@ def main():
 			frames_seq[idx, :, :] = point_3d
 		my_vl_dict[a_dir] = frames_seq
 		print('{} done!'.format(a_dir))
-	with open(opt.demo+'/val_data.pkl', 'wb') as handle:
+	with open(opt.demo+'/mini_val_data.pkl', 'wb') as handle:
 		pickle.dump(my_vl_dict, handle, protocol=pickle.HIGHEST_PROTOCOL)
 
 if __name__ == '__main__':
