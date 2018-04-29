@@ -29,9 +29,9 @@ plot_vals_path = '../outputs/classifierX3_plotres.pkl'
 tr_labels = pd.read_csv('../data/small_ntu_frames/train_labels', header=None)
 v_labels = pd.read_csv('../data/small_ntu_frames/val_labels', header=None)
 
-with open('../data/mini_ntu_frames/mini_train_data.pkl', 'rb') as f:
+with open('../data/small_ntu_frames/train_data.pkl', 'rb') as f:
 	tr_dict = pickle.load(f)
-with open('../data/mini_ntu_frames/mini_val_data.pkl', 'rb') as f:
+with open('../data/small_ntu_frames/val_data.pkl', 'rb') as f:
 	v_dict = pickle.load(f)
 
 
