@@ -202,6 +202,7 @@ model0 = model0.cuda()
 Dv1 = val_data_gen(v_d, v_labels)
 n_sv = len(v_d)
 def eval_model(model):
+	model.eval()
 	right_count = 0
 	for i in range(n_sv):
 		model.hidden3 = (model.hidden3[0].detach(), model.hidden3[1].detach())
@@ -210,7 +211,7 @@ def eval_model(model):
 		model.hidden2_3 = (model.hidden2_3[0].detach(), model.hidden2_3[1].detach())
 		model.zero_grad()
 		X, Y = next(Dv1)
-		X = torch.from_numpy(X).float().cuda()
+		X = autograd.Variable(torch.from_numpy(X).float().cuda(), requires_grad=False)
 		X1 = X.view(len(X), 1, -1)
 		y_hat = model(X1)
 		y_pred = np.argmax(y_hat.data.cpu().numpy())
@@ -235,16 +236,17 @@ def save_model(model, m):
 
 #training function
 def train(model, num_epoch, num_iter, rec_interval, disp_interval, batch_size):
-	optimizer = optim.Adam(model.parameters(), lr = 6e-5)
+	optimizer = optim.Adam(model.parameters(), lr = 2e-5)
 	loss_values = []
 	avg_loss_values = []
 	rec_step = 0
 	criterion = nn.CrossEntropyLoss()
 	acc_values = []
 	last_best_acc = 0
-	print('dbg', eval_model(model))
+	#print('dbg', eval_model(model))
 	print('Starting the training ...')
 	for eph in range(num_epoch):
+		model.train()
 		print('epoch {} starting ...'.format(eph))
 		avg_loss = 0
 		n_samples = 0
@@ -286,9 +288,9 @@ def train(model, num_epoch, num_iter, rec_interval, disp_interval, batch_size):
 			last_best_acc = acc
 		else:
 			pass
-		print('epoch: {} <====train track===> avg_loss: {}, accuracy: {}%\n'.format(eph, avg_loss, acc))
+		print('epoch: {} <====train track===> avg_loss: {}, val_accuracy: {} %\n'.format(eph, avg_loss, acc))
 		f = open(plot_vals_path, 'wb')
-		pickle.dump((loss_values, avg_loss_vals, acc_values), f)
+		pickle.dump((loss_values, avg_loss_values, acc_values), f)
 		f.close()
 	return loss_values, avg_loss_values, acc_values
 
@@ -296,7 +298,7 @@ def train(model, num_epoch, num_iter, rec_interval, disp_interval, batch_size):
 # In[21]:
 
 
-loss_vals, avg_loss_vals, acc_values = train(model0, 2, 10, 2, 1, 8) #100eph_8e-6, 
+loss_vals, avg_loss_vals, acc_values = train(model0, 50, 1000, 2, 100, 8) #100eph_8e-6,#2e-4 was good one 
 plt.figure()
 plt.plot(loss_vals)
 plt.xlabel('iterations')
