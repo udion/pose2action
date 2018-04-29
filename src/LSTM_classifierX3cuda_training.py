@@ -189,7 +189,7 @@ class LSTMClassifier(nn.Module):
 		log_probs = F.softmax(y, dim=1)
 		return log_probs
 #instanstiating a model
-model0 = LSTMClassifier(48, 512, 8, 1, 2, 3)
+model0 = LSTMClassifier(48, 128, 8, 1, 2, 3)
 #to do stuff in CUDA
 model0 = model0.cuda()
 
@@ -204,8 +204,13 @@ n_sv = len(v_d)
 def eval_model(model):
 	right_count = 0
 	for i in range(n_sv):
+		model.hidden3 = (model.hidden3[0].detach(), model.hidden3[1].detach())
+		model.hidden2_1 = (model.hidden2_1[0].detach(), model.hidden2_1[1].detach())
+		model.hidden2_2 = (model.hidden2_2[0].detach(), model.hidden2_2[1].detach())
+		model.hidden2_3 = (model.hidden2_3[0].detach(), model.hidden2_3[1].detach())
+		model.zero_grad()
 		X, Y = next(Dv1)
-		X = autograd.Variable(torch.from_numpy(X).float()).cuda()
+		X = torch.from_numpy(X).float().cuda()
 		X1 = X.view(len(X), 1, -1)
 		y_hat = model(X1)
 		y_pred = np.argmax(y_hat.data.cpu().numpy())
@@ -237,6 +242,7 @@ def train(model, num_epoch, num_iter, rec_interval, disp_interval, batch_size):
 	criterion = nn.CrossEntropyLoss()
 	acc_values = []
 	last_best_acc = 0
+	print('dbg', eval_model(model))
 	print('Starting the training ...')
 	for eph in range(num_epoch):
 		print('epoch {} starting ...'.format(eph))
@@ -290,7 +296,7 @@ def train(model, num_epoch, num_iter, rec_interval, disp_interval, batch_size):
 # In[21]:
 
 
-loss_vals, avg_loss_vals, acc_values = train(model0, 10, 100, 2, 10, 8) #100eph_8e-6, 
+loss_vals, avg_loss_vals, acc_values = train(model0, 2, 10, 2, 1, 8) #100eph_8e-6, 
 plt.figure()
 plt.plot(loss_vals)
 plt.xlabel('iterations')
