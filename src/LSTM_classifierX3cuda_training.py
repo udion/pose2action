@@ -236,7 +236,7 @@ def train(model, num_epoch, num_iter, rec_interval, disp_interval, batch_size):
 	rec_step = 0
 	criterion = nn.CrossEntropyLoss()
 	acc_values = []
-	last_acc = 0
+	last_best_acc = 0
 	print('Starting the training ...')
 	for eph in range(num_epoch):
 		print('epoch {} starting ...'.format(eph))
@@ -275,8 +275,9 @@ def train(model, num_epoch, num_iter, rec_interval, disp_interval, batch_size):
 		acc_values.append(acc)
 		# saving the best and last train models
 		save_model(model, 'last')
-		if acc >= last_acc:
+		if acc >= last_best_acc:
 			save_model(model, 'best')
+			last_best_acc = acc
 		else:
 			pass
 		print('epoch: {} <====train track===> avg_loss: {}, accuracy: {}%\n'.format(eph, avg_loss, acc))
