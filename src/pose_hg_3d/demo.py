@@ -17,7 +17,7 @@ def main():
 	if opt.loadModel != 'none':
 		model = torch.load(opt.loadModel).cuda()	
 	else:
-		model = torch.load('../tr_models/hgreg-3d.pth').cuda()
+		model = torch.load('../../tr_models/hgreg-3d.pth').cuda()
 	img = cv2.imread(opt.demo)
 	input = torch.from_numpy(img.transpose(2, 0, 1)).float() / 256.
 	input = input.view(1, input.size(0), input.size(1), input.size(2))
