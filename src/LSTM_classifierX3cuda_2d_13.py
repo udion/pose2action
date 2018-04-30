@@ -22,9 +22,9 @@ import torch.optim as optim
 # In[19]:
 
 
-best_model_path = '../tr_models/classifierX32d_all_best.pth'
-last_model_path = '../tr_models/classifierX32d_all_last.pth'
-plot_vals_path = '../outputs/classifierX32d_all_plotres.pkl'
+best_model_path = '../tr_models/classifierX32d_13_best.pth'
+last_model_path = '../tr_models/classifierX32d_13_last.pth'
+plot_vals_path = '../outputs/classifierX32d_13_plotres.pkl'
 
 tr_labels = pd.read_csv('../data/small_ntu_frames/train_labels', header=None)
 v_labels = pd.read_csv('../data/small_ntu_frames/val_labels', header=None)
@@ -122,14 +122,14 @@ class LSTMClassifier(nn.Module):
 		
 		self.lstm2_1 = nn.LSTM(joints_dim2d, hidden_dim, num_layers=self.num_layers)
 		self.conv1_2_1 = nn.Conv1d(1, 1, kernel_size, stride=1, padding=1)
-		self.lstm2_2 = nn.LSTM(joints_dim2d, hidden_dim, num_layers=self.num_layers)
-		self.conv1_2_2 = nn.Conv1d(1, 1, kernel_size, stride=1, padding=1)
+		# self.lstm2_2 = nn.LSTM(joints_dim2d, hidden_dim, num_layers=self.num_layers)
+		# self.conv1_2_2 = nn.Conv1d(1, 1, kernel_size, stride=1, padding=1)
 		self.lstm2_3 = nn.LSTM(joints_dim2d, hidden_dim, num_layers=self.num_layers)
 		self.conv1_2_3 = nn.Conv1d(1, 1, kernel_size, stride=1, padding=1)
 		
 		# self.hidden3 = self.init_hidden3()
 		self.hidden2_1 = self.init_hidden2_1()
-		self.hidden2_2 = self.init_hidden2_2()
+		# self.hidden2_2 = self.init_hidden2_2()
 		self.hidden2_3 = self.init_hidden2_3()
 		
 		self.hidden2label = nn.Linear(hidden_dim, label_size)
@@ -160,25 +160,26 @@ class LSTMClassifier(nn.Module):
 		x3 = joints3d_vec
 		x2 = x3.view(-1, 16, 3)
 		x2_1 = x2[:,:,1:3].contiguous().view(-1, 1, 32)
-		x2_2 = x2[:,:,0:2].contiguous().view(-1, 1, 32)
+		# x2_2 = x2[:,:,0:2].contiguous().view(-1, 1, 32)
 		x2_3 = x2[:,:,[0,2]].contiguous().view(-1, 1, 32)
 		
 		# lstm_out3, self.hidden3 = self.lstm3(x3, self.hidden3)
 		lstm_out2_1, self.hidden2_1 = self.lstm2_1(x2_1, self.hidden2_1)
-		lstm_out2_2, self.hidden2_2 = self.lstm2_2(x2_2, self.hidden2_2)
+		# lstm_out2_2, self.hidden2_2 = self.lstm2_2(x2_2, self.hidden2_2)
 		lstm_out2_3, self.hidden2_3 = self.lstm2_3(x2_3, self.hidden2_3)
 		
 		# t3 = lstm_out3[-1].view(self.batch_size,1,-1)
 		t2_1 = lstm_out2_1[-1].view(self.batch_size,1,-1)
-		t2_2 = lstm_out2_2[-1].view(self.batch_size,1,-1)
+		# t2_2 = lstm_out2_2[-1].view(self.batch_size,1,-1)
 		t2_3 = lstm_out2_3[-1].view(self.batch_size,1,-1)
 
 		# y3 = self.conv1_3(t3)
 		y2_1 = self.conv1_2_1(t2_1)
-		y2_2 = self.conv1_2_2(t2_2)
+		# y2_2 = self.conv1_2_2(t2_2)
 		y2_3 = self.conv1_2_3(t2_3)
 		
-		y3 = y2_1+y2_2+y2_3
+		# y3 = y2_1+y2_2+y2_3
+		y3 = y2_1+y2_3
 		
 		y3 = y3.contiguous().view(-1, self.hidden_dim)        
 		y  = self.hidden2label(y3)
@@ -204,7 +205,7 @@ def eval_model(model):
 	for i in range(n_sv):
 		# model.hidden3 = (model.hidden3[0].detach(), model.hidden3[1].detach())
 		model.hidden2_1 = (model.hidden2_1[0].detach(), model.hidden2_1[1].detach())
-		model.hidden2_2 = (model.hidden2_2[0].detach(), model.hidden2_2[1].detach())
+		# model.hidden2_2 = (model.hidden2_2[0].detach(), model.hidden2_2[1].detach())
 		model.hidden2_3 = (model.hidden2_3[0].detach(), model.hidden2_3[1].detach())
 		model.zero_grad()
 		X, Y = next(Dv1)
@@ -250,7 +251,7 @@ def train(model, num_epoch, num_iter, rec_interval, disp_interval, batch_size):
 		for i in range(num_iter):
 			# model.hidden3 = (model.hidden3[0].detach(), model.hidden3[1].detach())
 			model.hidden2_1 = (model.hidden2_1[0].detach(), model.hidden2_1[1].detach())
-			model.hidden2_2 = (model.hidden2_2[0].detach(), model.hidden2_2[1].detach())
+			# model.hidden2_2 = (model.hidden2_2[0].detach(), model.hidden2_2[1].detach())
 			model.hidden2_3 = (model.hidden2_3[0].detach(), model.hidden2_3[1].detach())
 			model.zero_grad()
 			loss = 0
