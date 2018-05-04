@@ -25,14 +25,23 @@ The subset of the NTU dataset used for this project is the following
 The input is a sequence of frames (i.e video) which first passes through a trained model [available here](https://github.com/xingyizhou/pytorch-pose-hg-3d).
 This produces the estmates for the pose in 3D, this 3D pose passes through our network (which takes it various projections) and is used as the main features to classify the action from the above 8 categories.
 
-![input](./outputs/readme_out/input.gif)
+<p align='center'>
+  <img src='./outputs/readme_out/input.gif' alt='input'/>
+</p>
 
-![input](./outputs/readme_out/xingy_net.png)
+<p align='center'>
+  <img src='./outputs/readme_out/xingy_net.png' alt='x net'/>
+</p>
 
-![input](./outputs/readme_out/output_ske.gif)
+| 2d            | 3d      |
+| -------------     |:-------------:|
+| ![input](./outputs/readme_out/output_ske.gif)      | ![input](./outputs/readme_out/3d_ske.gif)           |
+   
 
-![input](./outputs/readme_out/3d_ske.gif)
 
+<p align='center'>
+  <img src='./outputs/readme_out/main_model0.png' alt='main model0' style="width: 1000px; height: 1000px" />
+</p>
 
 
 
