@@ -88,19 +88,19 @@ For the above mentioned 8 classes, some of the top accuracies models and their l
 <br>
 <br>
 
-<i>3D+2D projections LSTMS (82.7% accuracy)</i>				
+* <i>3D+2D projections LSTMS (82.7% accuracy)</i>				
 <p align='float'>
   <img src='./outputs/plots/av_classifierX3.png' style="width: 300px;" />
   <img src='./outputs/plots/acc_classifierX3.png' style="width: 300px;" />
 </p>
 
-<i>all 2D projections (64.23% accuracy)</i>
+* <i>all 2D projections (64.23% accuracy)</i>
 <p align='float'>
   <img src='./outputs/plots/av_classifierX32d_all.png' style="width: 300px;" />
   <img src='./outputs/plots/acc_classifierX32d_all.png' style="width: 300px;" />
 </p>
 
-<i>Simple 2-Stacked LSTM (81.25% accuracy)</i>
+* <i>Simple 2-Stacked LSTM (81.25% accuracy)</i>
 <p align='float'>
   <img src='./outputs/plots/lossForSimpleLSTM.png' style="width: 100px; height: 100px;" />
   <img src='./outputs/plots/accuraciesForSimpleLSTM.png' style="width: 100px; height: 100px;" />
