@@ -82,12 +82,6 @@ We also tried many different variations for our classifier model, which includes
 
 For the above mentioned 8 classes, some of the top accuracies models and their learning curve is shown below. Note that some of the models are not fully trained and will possibly score higher if training is completed.
 
-<<<<<<< HEAD
-| Classifier									|    Results  (Accuracy) (val%)		| training plots
-|-----------------------------------------------|-----------------------------------------------|-------------------------------|
-| 3D+2D projections LSTMS					|	82.527%   		| <img src='./outputs/plots/inst_classifierX3.png' alt='main model0' style="width: 300px; height: 300px" /> <img src='./outputs/plots/av_classifierX3.png' alt='main model0' style="width: 300px; height: 300px" /> <img src='./outputs/plots/acc_classifierX3.png' alt='main model0' style="width: 300px; height: 300px" /> |
-| all 2D projections					|	64.233%   		|  <img src='./outputs/plots/inst_classifierX32d_all.png' alt='main model0' style="width: 300px; height: 300px" /> <img src='./outputs/plots/av_classifierX32d_all.png' alt='main model0' style="width: 300px; height: 300px" /> <img src='./outputs/plots/av_classifierX32d_all.png' alt='main model0' style="width: 300px; height: 300px" /> |
-=======
 <br>
 	<br>
 <b> Here are the plots of the losses and accuracies of some of the best models (trained on 8 classes)</b>
@@ -108,8 +102,8 @@ For the above mentioned 8 classes, some of the top accuracies models and their l
 
 * <i>Simple 2-Stacked LSTM (81.25% accuracy)</i>
 <p align='float'>
-  <img src='./outputs/plots/lossForSimpleLSTM.png' style="width: 100px; height: 100px;" />
-  <img src='./outputs/plots/accuraciesForSimpleLSTM.png' style="width: 100px; height: 100px;" />
+  <img src='./outputs/plots/lossForSimpleLSTM.png' style="width: 300px; height: 300px;" />
+  <img src='./outputs/plots/accuraciesForSimpleLSTM.png' style="width: 300px; height: 300px;" />
 </p>
 
 
@@ -122,5 +116,4 @@ To train the models run `python LSTM_classifierX3cuda<one_of_model_names>.py` in
 ## References
 For the purpose of this experiment to get the poses from the the images and videos we are using the awesome repository @
 [https://github.com/xingyizhou/pytorch-pose-hg-3d](https://github.com/xingyizhou/pytorch-pose-hg-3d)
->>>>>>> 3a1c151dea8e111f060216c46491776d6f48dfec
 
