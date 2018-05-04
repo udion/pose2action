@@ -60,8 +60,8 @@ For the above mentioned 8 classes, some of the top accuracies models and their l
 
 | Classifier									|    Results  (Accuracy) (val%)		| training plots
 |-----------------------------------------------|-----------------------------------------------|-------------------------------|
-| 3D+2D projections LSTMS					|	82.527%   		|  ![test](./outputs/plots/inst_classifierX3.png) ![test](./outputs/plots/av_classifierX3.png) ![test](./outputs/plots/acc_classifierX3.png) |
-| all 2D projections					|	64.233%   		|  ![test](./outputs/plots/inst_classifierX32d_all.png) ![test](./outputs/plots/av_classifierX32d_all.png) ![test](./outputs/plots/acc_classifierX32d_all.png) |
+| 3D+2D projections LSTMS					|	82.527%   		| <img src='./outputs/plots/inst_classifierX3.png' alt='main model0' style="width: 300px; height: 300px" /> <img src='./outputs/plots/av_classifierX3.png' alt='main model0' style="width: 300px; height: 300px" /> <img src='./outputs/plots/acc_classifierX3.png' alt='main model0' style="width: 300px; height: 300px" /> |
+| all 2D projections					|	64.233%   		|  <img src='./outputs/plots/inst_classifierX32d_all.png' alt='main model0' style="width: 300px; height: 300px" /> <img src='./outputs/plots/av_classifierX32d_all.png' alt='main model0' style="width: 300px; height: 300px" /> <img src='./outputs/plots/av_classifierX32d_all.png' alt='main model0' style="width: 300px; height: 300px" /> |
 
 ## Requirements and Instructions
 Kindly use the requirements.txt to set up your machine for replicating this experiment. To train the models run `python LSTM_classifierX3cuda<one_of_model_names>.py` in the src folder. This will start the training for 50 epochs and keep saving the best and the last model so far along with the accuracy and loss results in `tr_models` and `outputs` respectively. 
