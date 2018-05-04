@@ -44,8 +44,8 @@ def main():
 		debugger.addPoint2D(pred, (255, 0, 0))
 		debugger.addPoint3D(np.concatenate([pred, (reg + 1) / 2. * 256], axis = 1))
 		# debugger.showImg(pause = True)
-		debugger.saveImg(path=save_path)
-		debugger.show3D()
+		debugger.saveImg(path=save_path+'/frame{}.jpg'.format(idx))
+		debugger.save3d(path=path=save_path+'/frame_p3d{}.jpg'.format(idx))
 		print('frame {} done'.format(idx))
 
 if __name__ == '__main__':
