@@ -72,13 +72,16 @@ We also tried many different variations for our classifier model, which includes
 
 |						Data 				    |	Classifier									|    Results  (Accuracy) (val%, train%)		|
 |-----------------------------------------------|-----------------------------------------------|-------------------------------|
-| Ground-Truth-Skeleton - 5 classes				|	Single LSTM, 3D coordinates					|	75.5%, 79.5%   		|
-| Ground-Truth-Skeleton - 5 classes				|	2-Stacked LSTMs, 3D coordinates 			| 	77.1%, 80.4%  		|
-| Ground-Truth-Skeleton - 5 classes				|	3-Stacked LSTMs, 3D coordinates 			| 	77.2%, 85.6%  		|
-| Ground-Truth-Skeletons - 49 classes			|	2-Stacked LSTMs, 3D coordinates				|	59.7%, 72.5%		|
+| Ground-Truth-Skeleton - 5 classes				|	Single LSTM, 3D coordinates					|	75.5%, 79.5%   				|
+| Ground-Truth-Skeleton - 5 classes				|	2-Stacked LSTMs, 3D coordinates 			| 	77.1%, 80.4%  				|
+| Ground-Truth-Skeleton - 5 classes				|	3-Stacked LSTMs, 3D coordinates 			| 	77.2%, 85.6%  				|
+| Ground-Truth-Skeletons - 49 classes			|	2-Stacked LSTMs, 3D coordinates				|	59.7%, 72.5%				|
 | Hourglass-Predicted-Skeletons - 8 classes		|	2-Stacked LSTMs, 3D coordinates				|	81.25% 						|
-| Hourglass-Predicted-Skeletons - 8 classes		|	2D + 3D Projection LSTMs + 1D conv + fusion				|	82.57% 						|
-| Hourglass-Predicted-Skeletons - 8 classes		|	All 2D Projection LSTMs + 1D conv + fusion				|	64.23% 						|
+| Hourglass-Predicted-Skeletons - 8 classes		|	2D + 3D Projection LSTMs + 1D conv + fusion	|	82.57% 						|
+| Hourglass-Predicted-Skeletons - 8 classes		|	All 2D Projection LSTMs + 1D conv + fusion	|	64.23% 						|
+| Hourglass-Predicted-Skeletons - 8 classes		|   X-Y projection only + 1D conv 				|	75.36%						|
+| Hourglass-Predicted-Skeletons - 8 classes		|   Y-Z projection only + 1D conv 				|	72.94%						|
+| Hourglass-Predicted-Skeletons - 8 classes		|   Z-Y projection only + 1D conv 				|	73.86%						|
 
 For the above mentioned 8 classes, some of the top accuracies models and their learning curve is shown below. Note that some of the models are not fully trained and will possibly score higher if training is completed.
 
