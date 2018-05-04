@@ -81,7 +81,8 @@ We also tried many different variations for our classifier model, which includes
 | Hourglass-Predicted-Skeletons - 8 classes		|	All 2D Projection LSTMs + 1D conv + fusion	|	64.23% 						|
 | Hourglass-Predicted-Skeletons - 8 classes		|   X-Y projection only + 1D conv 				|	75.36%						|
 | Hourglass-Predicted-Skeletons - 8 classes		|   Y-Z projection only + 1D conv 				|	72.94%						|
-| Hourglass-Predicted-Skeletons - 8 classes		|   Z-Y projection only + 1D conv 				|	73.86%						|
+| Hourglass-Predicted-Skeletons - 8 classes   |   Z-Y projection only + 1D conv         | 73.86%            |
+| Hourglass-Predicted-Skeletons - 49 classes		|   2-Stacked LSTM, 3D coordinates 				|	54.56%						|
 
 For the above mentioned 8 classes, some of the top accuracies models and their learning curve is shown below. Note that some of the models are not fully trained and will possibly score higher if training is completed.
 
@@ -114,6 +115,14 @@ For the above mentioned 8 classes, some of the top accuracies models and their l
   <img src='./outputs/plots/lossEntireDataSimpleLSTM.png' style="width: 300px;" />
   <img src='./outputs/plots/accuraciesEntireDataSimpleLSTM.png' style="width: 300px;" />
 </p>
+
+
+<br>
+<br>
+* <b> Some Interesting Observations</b><br>
+One would expect that the accuracy obtained using only the x-y coordinates would be significantly lesser than that obtained using the 3D pose data. However, we find that the accuracy is 75.26% and 82.57% respectively, which means that the addition of the z coordinate does not affect action recognition as greatly as one would initially expect.<br>
+Also, when trained on the entire data, we get an accuracy of almost 60% using a simple doubly stacked LSTM and when using the pose estimated by the hourglass model, we get an accuracy of around 55%. This is better than expected, considering that the ground truth pose has 25 joints and the estimated pose has only 16 as this means that using estimates for pose in place of the ground truth pose does not lead to a very large decrease in accuracy.
+<br>
 
 
 ## Requirements 
