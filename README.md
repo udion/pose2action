@@ -106,6 +106,12 @@ For the above mentioned 8 classes, some of the top accuracies models and their l
   <img src='./outputs/plots/accuraciesForSimpleLSTM.png' style="width: 300px;" />
 </p>
 
+* <i>Simple 2-Stacked LSTM (81.25% accuracy)</i>
+<p align='float'>
+  <img src='./outputs/plots/lossEntireDataSimpleLSTM.png' style="width: 300px;" />
+  <img src='./outputs/plots/accuraciesEntireDataBasicLSTM.png' style="width: 300px;" />
+</p>
+
 
 ## Requirements 
 Kindly use the requirements.txt to set up your machine for replicating this experiment. 
