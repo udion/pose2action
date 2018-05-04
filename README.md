@@ -116,4 +116,4 @@ To train the models run `python LSTM_classifierX3cuda<one_of_model_names>.py` in
 ## References
 For the purpose of this experiment to get the poses from the the images and videos we are using the awesome repository @
 [https://github.com/xingyizhou/pytorch-pose-hg-3d](https://github.com/xingyizhou/pytorch-pose-hg-3d)
->>>>>>> 0f7a86effaed63981e8aa3c848af607ce63465e1
+
