@@ -37,14 +37,16 @@ This produces the estmates for the pose in 3D, this 3D pose passes through our n
    
 
 
+`predicted action : tear up paper`
+(check the load_testbed in notebook to verify this example)
+
+
 <p align='center'>
   <img src='./outputs/readme_out/main_model0.png' alt='main model0' style="width: 1200px; height: 900px" />
 </p>
 
-`predicted action : tear up paper`
-(check the load_testbed in notebook to verify this example)
-
 We also tried many different variations for our classifier model, which includes simple 2 layered LSTM network, another type of variation included LSTM models based on only some of the 2d projection of the pose (say XY or YZ or ZX) etc.
+
 
 ## Some Results
 
@@ -55,10 +57,32 @@ We also tried many different variations for our classifier model, which includes
 | Ground-Truth-Skeleton - 5 classes				|	3-Stacked LSTMs, 3D coordinates 			| 	77.2%, 85.6%  		|
 | Ground-Truth-Skeletons - 49 classes			|	2-Stacked LSTMs, 3D coordinates				|	59.7%, 72.5%		|
 | Hourglass-Predicted-Skeletons - 8 classes		|	2-Stacked LSTMs, 3D coordinates				|	81.25% 						|
+| Hourglass-Predicted-Skeletons - 8 classes		|	2D + 3D Projection LSTMs + 1D conv + fusion				|	82.57% 						|
+| Hourglass-Predicted-Skeletons - 8 classes		|	All 2D Projection LSTMs + 1D conv + fusion				|	64.23% 						|
 
 For the above mentioned 8 classes, some of the top accuracies models and their learning curve is shown below. Note that some of the models are not fully trained and will possibly score higher if training is completed.
 
-| Classifier									|    Results  (Accuracy) (val%)		| training plots
-|-----------------------------------------------|-----------------------------------------------|-------------------------------|
-| 3D+2D projections LSTMS					|	82.527%   		|  ![test](./outputs/plots/inst_classifierX3.png) ![test](./outputs/plots/av_classifierX3.png) ![test](./outputs/plots/acc_classifierX3.png) |
-| all 2D projections					|	64.233%   		|  ![test](./outputs/plots/inst_classifierX32d_all.png) ![test](./outputs/plots/av_classifierX32d_all.png) ![test](./outputs/plots/acc_classifierX32d_all.png) |
+<br>
+	<br>
+<b> Here are the plots of the losses and accuracies of some of the best models (trained on 8 classes)</b>
+<br>
+<br>
+
+<i>3D+2D projections LSTMS (82.7% accuracy)</i>				
+<p align='float'>
+  <img src='./outputs/plots/av_classifierX3.png' style="width: 300px;" />
+  <img src='./outputs/plots/acc_classifierX3.png' style="width: 300px;" />
+</p>
+
+<i>Simple 2-Stacked LSTM (81.25% accuracy)</i>
+<p align='float'>
+  <img src='./outputs/plots/lossForSimpleLSTM.png' style="width: 300px;" />
+  <img src='./outputs/plots/accuraciesForSimpleLSTM.png' style="width: 300px;" />
+</p>
+
+
+<i>all 2D projections (64.23% accuracy)</i>
+<p align='float'>
+  <img src='./outputs/plots/av_classifierX32d_all.png' style="width: 300px;" />
+  <img src='./outputs/plots/acc_classifierX32d_all.png' style="width: 300px;" />
+</p>
