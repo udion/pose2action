@@ -12,21 +12,32 @@ We also tried fancier LSTMs as well where we projected the 3D coordinates onto x
 Then we moved to Action Recognition from Videos. We used pretrained Hourglass Network to estimate joints at each frame in videos and used similar LSTMs to perform the task of Action Recognition.
 
 ## Dataset
-We have used !(NTU-RGBD Action)(https://github.com/shahroudy/NTURGB-D) dataset in this project.
-It consists of 60 classes of various Human Activities and consist of 56,880 action samples. 
+We have used (NTU-RGBD Action)(https://github.com/shahroudy/NTURGB-D) dataset in this project.
+It consists of 60 classes of various Human Activities and consist of 56,880 action samples. Of these 60 classes we removed the last 11 classes consisting of multiple people. 
+We trained most our models on subsets of this dataset consisting of
 
-The subset of the NTU dataset used for this project is the following
+| Action            															| label Id      |
+| -------------     															|:-------------:|
+| drink water       															| 0             |
+| throw            	 															| 1             |
+| tear up paper     															| 2             |
+| take off glasses  															| 3             |
+| put something inside pocket / take out something from pocket 					| 4             |
+| pointing to something with finger 											| 5             |
+| wipe face 																	| 6             |
+| falling 																		| 7             |
+
+or 
 
 | Action            | label Id      |
 | -------------     |:-------------:|
 | drink water       | 0             |
-| throw             | 1             |
-| tear up paper     | 2             |
-| take off glasses  | 3             |
-| put something inside pocket / take out something from pocket | 4             |
-| pointing to something with finger | 5             |
-| wipe face | 6             |
-| falling | 7             |
+| wear jacket       | 1             |
+| Handwaving     	| 2             |
+| Kick something  	| 3             |
+| salute 			| 4             |
+
+We have also trained a some models on the complete dataset using 49 classes.
 
 ## Pipeline
 The input is a sequence of frames (i.e video) which first passes through a trained model [available here](https://github.com/xingyizhou/pytorch-pose-hg-3d).
