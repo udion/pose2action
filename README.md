@@ -106,7 +106,7 @@ For the above mentioned 8 classes, some of the top accuracies models and their l
   <img src='./outputs/plots/accuraciesForSimpleLSTM.png' style="width: 300px;" />
 </p>
 
-* <i>Simple 2-Stacked LSTM for entire data (59.7% accuracy)</i>
+* <i>Simple 2-Stacked LSTM on entire data (59.7% accuracy)</i>
 <p align='float'>
   <img src='./outputs/plots/lossEntireDataSimpleLSTM.png' style="width: 300px;" />
   <img src='./outputs/plots/accuraciesEntireDataSimpleLSTM.png' style="width: 300px;" />
