@@ -1,7 +1,7 @@
 ==> Args:
   DEBUG: 0
   LR: 0.00025
-  demo: ../../data/sample_vids/train_frames/train2185/frame0.jpg
+  demo: ../../data/small_ntu_frames/val_frames/val132
   dropLR: 1000000
   expID: default
   loadModel: none
