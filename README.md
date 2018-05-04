@@ -1,10 +1,19 @@
-## Intro
-This is an attempt to classify the actions in the images and videos using the pose. For the purpose of this experiment
-to get the poses from the the images and videos we are using the awesome repository @
-[https://github.com/xingyizhou/pytorch-pose-hg-3d](https://github.com/xingyizhou/pytorch-pose-hg-3d)
+# Action-Recognition
 
-This will hopefully help extend the pipeline of pose estimation to also perform classification. The current experiments are on the subset of
-NTU video images dataset consisting of only 8 action classes.
+## Objective
+Given a Video containing Human body Motion you have to recognize the action agent is performing.
+
+## Solution Approaches
+We started with Action Recognition from skeleton estimates of Human Body. 
+Given 3D ground truth coordinates of Human Body (obtained from Kinect Cameras) we tried to use LSTMS as well as Temporal Convolutions for learning skeleton representation of Human Activity Recognition.
+
+We also tried fancier LSTMs as well where we projected the 3D coordinates onto x-y plane, y-z plane, z-x plane followed by 1D convolutions and subsequently adding the outputs of the 4 LSTMs (x-y, y-z, z-x, 3D). Additionally we tried variants where we chose three out of the four LSTMs and compared performance among different projections.
+
+Then we moved to Action Recognition from Videos. We used pretrained Hourglass Network to estimate joints at each frame in videos and used similar LSTMs to perform the task of Action Recognition.
+
+## Dataset
+We have used !(NTU-RGBD Action)(https://github.com/shahroudy/NTURGB-D) dataset in this project.
+It consists of 60 classes of various Human Activities and consist of 56,880 action samples. 
 
 The subset of the NTU dataset used for this project is the following
 
@@ -63,5 +72,12 @@ For the above mentioned 8 classes, some of the top accuracies models and their l
 | 3D+2D projections LSTMS					|	82.527%   		|  ![test](./outputs/plots/inst_classifierX3.png) ![test](./outputs/plots/av_classifierX3.png) ![test](./outputs/plots/acc_classifierX3.png) |
 | all 2D projections					|	64.233%   		|  ![test](./outputs/plots/inst_classifierX32d_all.png) ![test](./outputs/plots/av_classifierX32d_all.png) ![test](./outputs/plots/acc_classifierX32d_all.png) |
 
-## Requirements and Instructions
-Kindly use the requirements.txt to set up your machine for replicating this experiment. To train the models run `python LSTM_classifierX3cuda<one_of_model_names>.py` in the src folder. This will start the training for 50 epochs and keep saving the best and the last model so far along with the accuracy and loss results in `tr_models` and `outputs` respectively. 
+## Requirements 
+Kindly use the requirements.txt to set up your machine for replicating this experiment. 
+
+## Instructions
+To train the models run `python LSTM_classifierX3cuda<one_of_model_names>.py` in the src folder. This will start the training for 50 epochs and keep saving the best and the last model so far along with the accuracy and loss results in `tr_models` and `outputs` respectively. 
+
+## References
+For the purpose of this experiment to get the poses from the the images and videos we are using the awesome repository @
+[https://github.com/xingyizhou/pytorch-pose-hg-3d](https://github.com/xingyizhou/pytorch-pose-hg-3d)
