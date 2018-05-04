@@ -1,23 +1,43 @@
-## Intro
-This is an attempt to classify the actions in the images and videos using the pose. For the purpose of this experiment
-to get the poses from the the images and videos we are using the awesome repository @
-[https://github.com/xingyizhou/pytorch-pose-hg-3d](https://github.com/xingyizhou/pytorch-pose-hg-3d)
+# Action-Recognition
 
-This will hopefully help extend the pipeline of pose estimation to also perform classification. The current experiments are on the subset of
-NTU video images dataset consisting of only 8 action classes.
+## Objective
+Given a Video containing Human body Motion you have to recognize the action agent is performing.
 
-The subset of the NTU dataset used for this project is the following
+## Solution Approaches
+We started with Action Recognition from skeleton estimates of Human Body. 
+Given 3D ground truth coordinates of Human Body (obtained from Kinect Cameras) we tried to use LSTMS as well as Temporal Convolutions for learning skeleton representation of Human Activity Recognition.
+
+We also tried fancier LSTMs as well where we projected the 3D coordinates onto x-y plane, y-z plane, z-x plane followed by 1D convolutions and subsequently adding the outputs of the 4 LSTMs (x-y, y-z, z-x, 3D). Additionally we tried variants where we chose three out of the four LSTMs and compared performance among different projections.
+
+Then we moved to Action Recognition from Videos. We used pretrained Hourglass Network to estimate joints at each frame in videos and used similar LSTMs to perform the task of Action Recognition.
+
+## Dataset
+We have used (NTU-RGBD Action)(https://github.com/shahroudy/NTURGB-D) dataset in this project.
+It consists of 60 classes of various Human Activities and consist of 56,880 action samples. Of these 60 classes we removed the last 11 classes consisting of multiple people. 
+We trained most our models on subsets of this dataset consisting of
+
+| Action            															| label Id      |
+| -------------     															|:-------------:|
+| drink water       															| 0             |
+| throw            	 															| 1             |
+| tear up paper     															| 2             |
+| take off glasses  															| 3             |
+| put something inside pocket / take out something from pocket 					| 4             |
+| pointing to something with finger 											| 5             |
+| wipe face 																	| 6             |
+| falling 																		| 7             |
+
+or 
 
 | Action            | label Id      |
 | -------------     |:-------------:|
 | drink water       | 0             |
-| throw             | 1             |
-| tear up paper     | 2             |
-| take off glasses  | 3             |
-| put something inside pocket / take out something from pocket | 4             |
-| pointing to something with finger | 5             |
-| wipe face | 6             |
-| falling | 7             |
+| wear jacket       | 1             |
+| Handwaving     	| 2             |
+| Kick something  	| 3             |
+| salute 			| 4             |
+
+We have also trained a some models on the complete dataset using 49 classes.
 
 ## Pipeline
 The input is a sequence of frames (i.e video) which first passes through a trained model [available here](https://github.com/xingyizhou/pytorch-pose-hg-3d).
@@ -86,3 +106,14 @@ For the above mentioned 8 classes, some of the top accuracies models and their l
   <img src='./outputs/plots/av_classifierX32d_all.png' style="width: 300px;" />
   <img src='./outputs/plots/acc_classifierX32d_all.png' style="width: 300px;" />
 </p>
+
+## Requirements 
+Kindly use the requirements.txt to set up your machine for replicating this experiment. 
+
+## Instructions
+To train the models run `python LSTM_classifierX3cuda<one_of_model_names>.py` in the src folder. This will start the training for 50 epochs and keep saving the best and the last model so far along with the accuracy and loss results in `tr_models` and `outputs` respectively. 
+
+## References
+For the purpose of this experiment to get the poses from the the images and videos we are using the awesome repository @
+[https://github.com/xingyizhou/pytorch-pose-hg-3d](https://github.com/xingyizhou/pytorch-pose-hg-3d)
+>>>>>>> 0f7a86effaed63981e8aa3c848af607ce63465e1
