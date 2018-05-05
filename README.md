@@ -75,7 +75,7 @@ We also tried many different variations for our classifier model, which includes
 | Ground-Truth-Skeleton - 5 classes				|	3-Stacked LSTMs, 3D coordinates 			| 	77.2%, 85.6%  				|
 | Ground-Truth-Skeletons - 49 classes			|	2-Stacked LSTMs, 3D coordinates				|	59.7%, 72.5%				|
 | Hourglass-Predicted-Skeletons - 8 classes		|	2-Stacked LSTMs, 3D coordinates				|	81.25% 						|
-| Hourglass-Predicted-Skeletons - 8 classes		|	2D + 3D Projection LSTMs + 1D conv + fusion	|	82.57% 						|
+| **Hourglass-Predicted-Skeletons - 8 classes**		|	**2D + 3D Projection LSTMs + 1D conv + fusion**	|	**82.57%** 						|
 | Hourglass-Predicted-Skeletons - 8 classes		|	All 2D Projection LSTMs + 1D conv + fusion	|	77.235% 						|
 | Hourglass-Predicted-Skeletons - 8 classes		|   X-Y projection only + 1D conv 				|	75.36%						|
 | Hourglass-Predicted-Skeletons - 8 classes		|   Y-Z projection only + 1D conv 				|	72.94%						|
@@ -116,13 +116,13 @@ For the above mentioned 8 classes, some of the top accuracies models and their l
 
 * <i>Simple 2-Stacked LSTM on entire estimated data (54.5% accuracy)</i>
 <p align='float'>
-  <img src='./outputs/plots/lossEntireEstimatedDataSimpleLSTM.png' style="width: 300px;" />
-  <img src='./outputs/plots/accuraciesEntireEstimatedDataSimpleLSTM.png' style="width: 300px;" />
+  <img src='./outputs/plots/lossEstimatedEntireDataSimpleLSTM.png' style="width: 300px;" />
+  <img src='./outputs/plots/accuraciesEstimatedEntireDataSimpleLSTM.png' style="width: 300px;" />
 </p>
 
 
 ### Some observations
-One would expect that the accuracy obtained using only the x-y coordinates would be significantly lesser than that obtained using the 3D pose data. However, we find that the accuracy is 75.26% and 82.57% respectively, which means that the addition of the z coordinate does not affect action recognition as greatly as one would initially expect.<br>
+One would expect that the accuracy obtained using only the x-y coordinates would be significantly lesser than that obtained using the 3D pose data. However, we find that the accuracy is **75.26%** and **82.57%** respectively, which means that the addition of the z coordinate does not affect action recognition as greatly as one would initially expect.<br>
 Also, when trained on the entire data, we get an accuracy of almost 60% using a simple doubly stacked LSTM and when using the pose estimated by the hourglass model, we get an accuracy of around 55%. This is better than expected, considering that the ground truth pose has 25 joints and the estimated pose has only 16 as this means that using estimates for pose in place of the ground truth pose does not lead to a very large decrease in accuracy.
 
 
@@ -134,5 +134,5 @@ To train the models run `python LSTM_classifierX3cuda<one_of_model_names>.py` in
 
 ## References
 For the purpose of this experiment to get the poses from the the images and videos we are using the awesome repository @
-[https://github.com/xingyizhou/pytorch-pose-hg-3d](https://github.com/xingyizhou/pytorch-pose-hg-3d)
+[https://github.com/xingyizhou/pytorch-pose-hg-3d](https://github.com/xingyizhou/pytorch-pose-hg-3d) by @xingyizhou
 
