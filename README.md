@@ -56,14 +56,12 @@ This produces the estmates for the pose in 3D, this 3D pose passes through our n
 | ![input](./outputs/readme_out/output_ske.gif)      | ![input](./outputs/readme_out/3d_ske.gif)           |
    
 
-
-`predicted action : tear up paper`
-(check the load_testbed in notebook to verify this example)
-
-
 <p align='center'>
   <img src='./outputs/readme_out/main_model0.png' alt='main model0' style="width: 1200px; height: 900px" />
 </p>
+
+`predicted action : tear up paper`
+(check the load_testbed in notebook to verify this example)
 
 We also tried many different variations for our classifier model, which includes simple 2 layered LSTM network, another type of variation included LSTM models based on only some of the 2d projection of the pose (say XY or YZ or ZX) etc.
 
