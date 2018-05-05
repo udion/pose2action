@@ -121,12 +121,9 @@ For the above mentioned 8 classes, some of the top accuracies models and their l
 </p>
 
 
-<br>
-<br>
-* <b> Some Interesting Observations</b><br>
+### Some observations
 One would expect that the accuracy obtained using only the x-y coordinates would be significantly lesser than that obtained using the 3D pose data. However, we find that the accuracy is 75.26% and 82.57% respectively, which means that the addition of the z coordinate does not affect action recognition as greatly as one would initially expect.<br>
 Also, when trained on the entire data, we get an accuracy of almost 60% using a simple doubly stacked LSTM and when using the pose estimated by the hourglass model, we get an accuracy of around 55%. This is better than expected, considering that the ground truth pose has 25 joints and the estimated pose has only 16 as this means that using estimates for pose in place of the ground truth pose does not lead to a very large decrease in accuracy.
-<br>
 
 
 ## Requirements 
