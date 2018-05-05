@@ -78,7 +78,7 @@ We also tried many different variations for our classifier model, which includes
 | Ground-Truth-Skeletons - 49 classes			|	2-Stacked LSTMs, 3D coordinates				|	59.7%, 72.5%				|
 | Hourglass-Predicted-Skeletons - 8 classes		|	2-Stacked LSTMs, 3D coordinates				|	81.25% 						|
 | Hourglass-Predicted-Skeletons - 8 classes		|	2D + 3D Projection LSTMs + 1D conv + fusion	|	82.57% 						|
-| Hourglass-Predicted-Skeletons - 8 classes		|	All 2D Projection LSTMs + 1D conv + fusion	|	64.23% 						|
+| Hourglass-Predicted-Skeletons - 8 classes		|	All 2D Projection LSTMs + 1D conv + fusion	|	77.235% 						|
 | Hourglass-Predicted-Skeletons - 8 classes		|   X-Y projection only + 1D conv 				|	75.36%						|
 | Hourglass-Predicted-Skeletons - 8 classes		|   Y-Z projection only + 1D conv 				|	72.94%						|
 | Hourglass-Predicted-Skeletons - 8 classes   |   Z-Y projection only + 1D conv         | 73.86%            |
@@ -98,7 +98,7 @@ For the above mentioned 8 classes, some of the top accuracies models and their l
   <img src='./outputs/plots/acc_classifierX3.png' style="width: 300px;" />
 </p>
 
-* <i>all 2D projections (64.23% accuracy)</i>
+* <i>all 2D projections (77.235% accuracy)</i>
 <p align='float'>
   <img src='./outputs/plots/av_classifierX32d_all.png' style="width: 300px;" />
   <img src='./outputs/plots/acc_classifierX32d_all.png' style="width: 300px;" />
@@ -118,8 +118,8 @@ For the above mentioned 8 classes, some of the top accuracies models and their l
 
 * <i>Simple 2-Stacked LSTM on entire estimated data (54.5% accuracy)</i>
 <p align='float'>
-  <img src='./outputs/plots/lossEntireEstimatedDataSimpleLSTM.png' style="width: 300px;" />
-  <img src='./outputs/plots/accuraciesEntireEstimatedDataSimpleLSTM.png' style="width: 300px;" />
+  <img src='./outputs/plots/lossEstimatedEntireDataSimpleLSTM.png' style="width: 300px;" />
+  <img src='./outputs/plots/accuraciesEstimatedEntireDataSimpleLSTM.png' style="width: 300px;" />
 </p>
 
 
