@@ -127,12 +127,28 @@ Also, when trained on the entire data, we get an accuracy of almost 60% using a 
 
 
 ## Requirements 
-Kindly use the requirements.txt to set up your machine for replicating this experiment. 
+Kindly use the requirements.txt to set up your machine for replicating this 
+experiment. some dependendecies are :
+
+```
+matplotlib==2.1.1
+numpy==1.11.3
+torch==0.3.0
+scipy==1.0.0
+tensorflow==1.3.0
+pandas==0.22.0
+
+```
+you can install these dependecies using `pip install requirements.txt`
 
 ## Instructions
 To train the models run `python LSTM_classifierX3cuda<one_of_model_names>.py` in the src folder. This will start the training for 50 epochs and keep saving the best and the last model so far along with the accuracy and loss results in `tr_models` and `outputs` respectively. 
 
 ## References
-For the purpose of this experiment to get the poses from the the images and videos we are using the awesome repository @
-[https://github.com/xingyizhou/pytorch-pose-hg-3d](https://github.com/xingyizhou/pytorch-pose-hg-3d) by @xingyizhou
+* For the purpose of this experiment to get the poses from the the images and videos we are using the awesome repository [https://github.com/xingyizhou/pytorch-pose-hg-3d](https://github.com/xingyizhou/pytorch-pose-hg-3d) by @xingyizhou
+
+* Which is based on [this paper](https://arxiv.org/abs/1704.02447)  
+
+* Note that some of the ideas that we implemented and tested are something new in the sense that its not has been presented in any paper yet.
+
 
